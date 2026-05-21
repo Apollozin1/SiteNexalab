@@ -1,0 +1,154 @@
+---
+interface Props {
+  t: {
+    contact: {
+      h2: string;
+      sub: string;
+      fields: {
+        name: string;
+        whatsapp: string;
+        business: string;
+        businessOptions: readonly string[];
+        message: string;
+        submit: string;
+      };
+      trust: string;
+    };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+const sectionId = isEn ? 'contact' : 'contato';
+const thankYouPath = isEn ? '/en/obrigado' : '/obrigado';
+---
+
+<section
+  id={sectionId}
+  style="background: var(--color-bg-elevated); padding: clamp(4rem,8vw,7rem) 0;"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-10">
+        <h2
+          class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-3"
+          style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+        >
+          {t.contact.h2}
+        </h2>
+        <p class="reveal reveal-delay-1 text-[var(--color-text-secondary)] leading-relaxed">
+          {t.contact.sub}
+        </p>
+      </div>
+
+      <form
+        method="POST"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        class="reveal reveal-delay-2 space-y-5"
+      >
+        <!-- Honeypot anti-spam -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <!-- Hidden fields -->
+        <input type="hidden" name="_next" value={new URL(thankYouPath, 'https://nexalab.dev').href} />
+        <input type="hidden" name="_subject" value="Novo lead NexaLab" />
+
+        <!-- Name -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+            {t.contact.fields.name} *
+          </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            required
+            autocomplete="name"
+            class="w-full rounded-xl px-4 py-3 text-sm text-[var(--color-text-primary)] outline-none transition-all duration-200"
+            style="background: var(--color-bg-base); border: 1px solid var(--color-border-default);"
+            onfocus="this.style.borderColor='var(--color-brand-cyan)'"
+            onblur="this.style.borderColor='var(--color-border-default)'"
+            placeholder={t.contact.fields.name}
+          />
+        </div>
+
+        <!-- WhatsApp -->
+        <div>
+          <label for="whatsapp" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+            {t.contact.fields.whatsapp} *
+          </label>
+          <input
+            id="whatsapp"
+            type="tel"
+            name="whatsapp"
+            required
+            autocomplete="tel"
+            maxlength="15"
+            class="w-full rounded-xl px-4 py-3 text-sm text-[var(--color-text-primary)] outline-none transition-all duration-200"
+            style="background: var(--color-bg-base); border: 1px solid var(--color-border-default);"
+            onfocus="this.style.borderColor='var(--color-brand-cyan)'"
+            onblur="this.style.borderColor='var(--color-border-default)'"
+            placeholder="(27) 99999-9999"
+          />
+        </div>
+
+        <!-- Business type -->
+        <div>
+          <label for="business" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+            {t.contact.fields.business} *
+          </label>
+          <select
+            id="business"
+            name="business"
+            required
+            class="w-full rounded-xl px-4 py-3 text-sm text-[var(--color-text-primary)] outline-none transition-all duration-200 appearance-none cursor-pointer"
+            style="background: var(--color-bg-base); border: 1px solid var(--color-border-default);"
+            onfocus="this.style.borderColor='var(--color-brand-cyan)'"
+            onblur="this.style.borderColor='var(--color-border-default)'"
+          >
+            <option value="" disabled selected style="color: var(--color-text-tertiary);">
+              {t.contact.fields.business}
+            </option>
+            {t.contact.fields.businessOptions.map((opt) => (
+              <option value={opt} style="background: var(--color-bg-elevated);">{opt}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-[var(--color-text-secondary)] mb-1.5">
+            {t.contact.fields.message}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            class="w-full rounded-xl px-4 py-3 text-sm text-[var(--color-text-primary)] outline-none transition-all duration-200 resize-none"
+            style="background: var(--color-bg-base); border: 1px solid var(--color-border-default);"
+            onfocus="this.style.borderColor='var(--color-brand-cyan)'"
+            onblur="this.style.borderColor='var(--color-border-default)'"
+            placeholder={t.contact.fields.message}
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="w-full font-medium rounded-[0.625rem] px-6 py-3.5 text-white transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_24px_var(--color-glow-cyan)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-cyan)]"
+          style="background: var(--color-brand-gradient);"
+        >
+          {t.contact.fields.submit}
+        </button>
+
+        <!-- Trust -->
+        <p class="text-center text-xs text-[var(--color-text-tertiary)]">
+          {t.contact.trust}
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/whatsapp-mask.ts"></script>

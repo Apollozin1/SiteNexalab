@@ -1,0 +1,79 @@
+---
+import Card from './ui/Card.astro';
+import Badge from './ui/Badge.astro';
+import GradientButton from './ui/GradientButton.astro';
+
+interface ServiceCard {
+  featured: boolean;
+  badge: string;
+  title: string;
+  body: string;
+  bullets: readonly string[];
+  price: string;
+}
+
+interface Props {
+  t: {
+    services: { h2: string; cards: readonly ServiceCard[] };
+    nav: { cta: string };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+const contactHref = isEn ? '#contact' : '#contato';
+---
+
+<section
+  id={isEn ? 'services' : 'servicos'}
+  style="background: var(--color-bg-elevated); padding: clamp(4rem,8vw,7rem) 0;"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8">
+    <h2
+      class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-12 text-center"
+      style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+    >
+      {t.services.h2}
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {t.services.cards.map((card, i) => (
+        <Card featured={card.featured} class={`reveal reveal-delay-${i + 1} flex flex-col`}>
+          {card.featured && card.badge && (
+            <div class="mb-4">
+              <Badge text={card.badge} />
+            </div>
+          )}
+
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-3">
+            {card.title}
+          </h3>
+          <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-4">
+            {card.body}
+          </p>
+
+          <ul class="space-y-2 mb-6 flex-1">
+            {card.bullets.map((bullet) => (
+              <li class="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
+                <svg class="w-4 h-4 mt-0.5 shrink-0 text-[var(--color-brand-cyan)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+                {bullet}
+              </li>
+            ))}
+          </ul>
+
+          <div class="border-t border-[var(--color-border-subtle)] pt-4 mt-auto">
+            <p class="text-sm font-semibold gradient-text mb-3">{card.price}</p>
+            {card.featured && (
+              <GradientButton href={contactHref} class="w-full justify-center text-sm">
+                {t.nav.cta}
+              </GradientButton>
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

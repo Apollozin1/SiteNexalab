@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Message sent — NexaLab"
+  description="Thank you for reaching out! We'll get back to you soon."
+  locale="en_US"
+>
+  <div
+    class="min-h-screen flex flex-col items-center justify-center text-center px-6"
+    style="background: var(--color-bg-base);"
+  >
+    <div class="max-w-md">
+      <div
+        class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+        style="background: rgba(79,195,247,0.15); border: 1px solid rgba(79,195,247,0.3);"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4FC3F7" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-semibold text-[var(--color-text-primary)] mb-3">
+        Message sent! ✅
+      </h1>
+      <p class="text-[var(--color-text-secondary)] leading-relaxed mb-8">
+        Thanks for reaching out. Agnes will reply on your WhatsApp within 24h.
+      </p>
+      <a
+        href="/en/"
+        class="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-brand-cyan)] hover:underline"
+      >
+        ← Back to site
+      </a>
+    </div>
+  </div>
+</BaseLayout>

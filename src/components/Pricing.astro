@@ -1,0 +1,91 @@
+---
+import GradientButton from './ui/GradientButton.astro';
+
+interface Props {
+  t: {
+    pricing: {
+      h2: string;
+      headers: readonly string[];
+      rows: readonly (readonly string[])[];
+      note: string;
+      cta: string;
+    };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+const contactHref = isEn ? '#contact' : '#contato';
+---
+
+<section
+  id={isEn ? 'pricing' : 'planos'}
+  style="background: var(--color-bg-elevated); padding: clamp(4rem,8vw,7rem) 0;"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8">
+    <h2
+      class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-10 text-center"
+      style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+    >
+      {t.pricing.h2}
+    </h2>
+
+    <!-- Desktop table -->
+    <div class="reveal hidden md:block overflow-hidden rounded-2xl border border-[var(--color-border-default)]">
+      <table class="w-full text-sm">
+        <thead>
+          <tr style="background: var(--color-bg-card);">
+            {t.pricing.headers.map((header) => (
+              <th class="text-left px-6 py-4 font-semibold text-[var(--color-text-secondary)] text-xs uppercase tracking-wider">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {t.pricing.rows.map((row, i) => (
+            <tr
+              class="border-t border-[var(--color-border-subtle)] transition-colors hover:bg-[var(--color-bg-card)]"
+            >
+              {row.map((cell, j) => (
+                <td class:list={['px-6 py-4', j === 0 ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]']}>
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile cards -->
+    <div class="md:hidden space-y-4">
+      {t.pricing.rows.map((row, i) => (
+        <div class={`reveal reveal-delay-${i + 1} rounded-2xl border border-[var(--color-border-default)] overflow-hidden`} style="background: var(--color-bg-card);">
+          <div class="px-5 py-3 border-b border-[var(--color-border-subtle)]">
+            <span class="font-semibold text-[var(--color-text-primary)]">{row[0]}</span>
+          </div>
+          <div class="px-5 py-3 flex justify-between text-sm">
+            <span class="text-[var(--color-text-tertiary)]">{t.pricing.headers[1]}</span>
+            <span class="text-[var(--color-text-secondary)]">{row[1]}</span>
+          </div>
+          <div class="px-5 py-3 flex justify-between text-sm border-t border-[var(--color-border-subtle)]">
+            <span class="text-[var(--color-text-tertiary)]">{t.pricing.headers[2]}</span>
+            <span class="text-[var(--color-text-secondary)]">{row[2]}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Note + CTA -->
+    <div class="reveal mt-8 text-center space-y-6">
+      <p class="text-[var(--color-text-secondary)] text-sm max-w-lg mx-auto leading-relaxed">
+        {t.pricing.note}
+      </p>
+      <GradientButton href={contactHref}>
+        {t.pricing.cta}
+      </GradientButton>
+    </div>
+  </div>
+</section>

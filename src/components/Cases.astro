@@ -1,0 +1,90 @@
+---
+import Card from './ui/Card.astro';
+import Badge from './ui/Badge.astro';
+import GradientButton from './ui/GradientButton.astro';
+
+interface CaseCard {
+  featured: boolean;
+  badge: string;
+  title: string;
+  body: string;
+  stack: string;
+  quote: string;
+  ctaLabel: string;
+  ctaTarget: string;
+  url: string;
+}
+
+interface Props {
+  t: {
+    cases: { h2: string; cards: readonly CaseCard[]; externalCta: string };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+---
+
+<section
+  id="cases"
+  style="background: var(--color-bg-base); padding: clamp(4rem,8vw,7rem) 0;"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8">
+    <h2
+      class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-12 text-center"
+      style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+    >
+      {t.cases.h2}
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {t.cases.cards.map((card, i) => (
+        <Card featured={card.featured} class={`reveal reveal-delay-${Math.min(i + 1, 4)} flex flex-col`}>
+          {card.featured && card.badge && (
+            <div class="mb-4">
+              <Badge text={card.badge} />
+            </div>
+          )}
+
+          <h3 class="text-xl font-semibold text-[var(--color-text-primary)] mb-2">
+            {card.title}
+          </h3>
+          <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed mb-3">
+            {card.body}
+          </p>
+
+          <p class="text-xs font-medium text-[var(--color-text-tertiary)] mb-4">
+            Stack: {card.stack}
+          </p>
+
+          {card.quote && (
+            <p class="text-sm italic text-[var(--color-brand-cyan)] mb-4 border-l-2 border-[var(--color-brand-cyan)] pl-3">
+              {card.quote}
+            </p>
+          )}
+
+          <div class="mt-auto">
+            {card.ctaLabel && card.ctaTarget ? (
+              <GradientButton href={card.ctaTarget} class="text-sm">
+                {card.ctaLabel}
+              </GradientButton>
+            ) : card.url ? (
+              <a
+                href={card.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-brand-cyan)] hover:underline transition-colors"
+              >
+                {t.cases.externalCta}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            ) : null}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

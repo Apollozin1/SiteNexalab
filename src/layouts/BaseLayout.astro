@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogAlt?: string;
+  locale?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description,
+  ogAlt = 'NexaLab',
+  locale = 'pt_BR',
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const ogImage = new URL('/og-image.png', Astro.site).href;
+const altLocaleHref = locale === 'pt_BR'
+  ? new URL('/en/', Astro.site).href
+  : new URL('/', Astro.site).href;
+const altLocale = locale === 'pt_BR' ? 'en' : 'pt-BR';
+const hreflangSelf = locale === 'pt_BR' ? 'pt-BR' : 'en';
+---
+<!doctype html>
+<html lang={locale === 'pt_BR' ? 'pt-BR' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Canonical + hreflang -->
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={hreflangSelf} href={canonicalUrl} />
+    <link rel="alternate" hreflang={altLocale} href={altLocaleHref} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:locale" content={locale} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Preload font -->
+    <link
+      rel="preload"
+      href="/fonts/inter-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

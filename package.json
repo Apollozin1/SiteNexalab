@@ -1,0 +1,23 @@
+{
+  "name": "sitenexalab",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=nexalab-site"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.7",
+    "lucide-astro": "^0.556.0",
+    "tailwindcss": "^4.3.0"
+  }
+}

@@ -1,0 +1,99 @@
+---
+import LangToggle from './LangToggle.astro';
+import GradientButton from './ui/GradientButton.astro';
+
+interface Props {
+  t: {
+    nav: {
+      services: string;
+      cases: string;
+      pricing: string;
+      about: string;
+      contact: string;
+      cta: string;
+    };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+const contactHref = isEn ? '#contact' : '#contato';
+---
+<header
+  class="sticky top-0 z-50 w-full border-b border-[var(--color-border-subtle)]"
+  style="background: rgba(10,15,31,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+    <!-- Logo -->
+    <a href={isEn ? '/en/' : '/'} aria-label="NexaLab — página inicial" class="shrink-0">
+      <img src="/logo-full.svg" alt="NexaLab" height="32" width="160" class="h-8 w-auto" />
+    </a>
+
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex items-center gap-6 text-sm" aria-label="Navegação principal">
+      <a href={isEn ? '/en/#services' : '/#servicos'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">{t.nav.services}</a>
+      <a href={isEn ? '/en/#cases' : '/#cases'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">{t.nav.cases}</a>
+      <a href={isEn ? '/en/#pricing' : '/#planos'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">{t.nav.pricing}</a>
+      <a href={isEn ? '/en/#about' : '/#sobre'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">{t.nav.about}</a>
+      <a href={contactHref} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">{t.nav.contact}</a>
+    </nav>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-4">
+      <LangToggle currentLocale={locale} />
+      <GradientButton href={contactHref} class="hidden sm:inline-flex text-sm">
+        {t.nav.cta}
+      </GradientButton>
+
+      <!-- Hamburger mobile -->
+      <button
+        id="menu-toggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="md:hidden flex flex-col gap-1.5 p-2 rounded-md hover:bg-white/5 transition-colors"
+      >
+        <span class="block w-5 h-0.5 bg-[var(--color-text-primary)] transition-all duration-200" id="bar1"></span>
+        <span class="block w-5 h-0.5 bg-[var(--color-text-primary)] transition-all duration-200" id="bar2"></span>
+        <span class="block w-5 h-0.5 bg-[var(--color-text-primary)] transition-all duration-200" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-[var(--color-border-subtle)] px-6 pb-4"
+    style="background: rgba(10,15,31,0.95);"
+    role="navigation"
+    aria-label="Menu mobile"
+  >
+    <nav class="flex flex-col gap-3 pt-4 text-sm">
+      <a href={isEn ? '/en/#services' : '/#servicos'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1">{t.nav.services}</a>
+      <a href={isEn ? '/en/#cases' : '/#cases'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1">{t.nav.cases}</a>
+      <a href={isEn ? '/en/#pricing' : '/#planos'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1">{t.nav.pricing}</a>
+      <a href={isEn ? '/en/#about' : '/#sobre'} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1">{t.nav.about}</a>
+      <a href={contactHref} class="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-1">{t.nav.contact}</a>
+      <GradientButton href={contactHref} class="mt-2 text-sm justify-center">
+        {t.nav.cta}
+      </GradientButton>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

@@ -1,0 +1,90 @@
+---
+import GradientButton from './ui/GradientButton.astro';
+import WhatsAppMockup from './WhatsAppMockup.astro';
+
+interface Props {
+  t: {
+    hero: {
+      eyebrow: string;
+      h1: string;
+      sub: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+    };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+const casesHref = isEn ? '#cases' : '#cases';
+const contactHref = isEn ? '#contact' : '#contato';
+---
+
+<section class="relative overflow-hidden" style="background: var(--color-bg-base); padding: clamp(5rem,10vw,8rem) 0 clamp(4rem,8vw,7rem);">
+  <!-- Gradient blobs -->
+  <div
+    class="pointer-events-none absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full opacity-10"
+    style="background: radial-gradient(circle, #4FC3F7 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full opacity-8"
+    style="background: radial-gradient(circle, #A855F7 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto max-w-[1200px] px-6 lg:px-8">
+    <div class="grid lg:grid-cols-[60%_40%] gap-12 lg:gap-16 items-center">
+
+      <!-- Left: copy -->
+      <div class="space-y-6">
+        <!-- Eyebrow -->
+        <p class="reveal text-xs font-semibold uppercase tracking-[0.1em] gradient-text">
+          {t.hero.eyebrow}
+        </p>
+
+        <!-- H1 -->
+        <h1
+          class="reveal reveal-delay-1 font-semibold tracking-tight text-[var(--color-text-primary)] leading-[1.05]"
+          style="font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em;"
+        >
+          {t.hero.h1}
+        </h1>
+
+        <!-- Sub -->
+        <p
+          class="reveal reveal-delay-2 text-[var(--color-text-secondary)] leading-[1.55]"
+          style="font-size: 1.125rem; max-width: 540px;"
+        >
+          {t.hero.sub}
+        </p>
+
+        <!-- CTAs -->
+        <div class="reveal reveal-delay-3 flex flex-wrap gap-4 pt-2">
+          <GradientButton href={contactHref}>
+            {t.hero.ctaPrimary}
+          </GradientButton>
+          <GradientButton href={casesHref} variant="secondary" class="group">
+            {t.hero.ctaSecondary}
+            <svg
+              class="w-4 h-4 transition-transform group-hover:translate-y-0.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </GradientButton>
+        </div>
+      </div>
+
+      <!-- Right: mockup -->
+      <div class="reveal reveal-delay-2 flex justify-center lg:justify-end">
+        <WhatsAppMockup locale={locale} />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none" aria-label="NexaLab logo">
+  <defs>
+    <linearGradient id="brand-g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  <!-- Emblema -->
+  <!-- Halo orbital -->
+  <path d="M20 4 A16 16 0 0 1 36 20" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <path d="M20 36 A16 16 0 0 1 4 20" stroke="#A855F7" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <!-- Dots lab -->
+  <circle cx="20" cy="7" r="1.2" fill="#4FC3F7"/>
+  <circle cx="24" cy="9" r="1" fill="#8B5CF6"/>
+  <circle cx="16" cy="9" r="1" fill="#4FC3F7"/>
+  <!-- N -->
+  <text x="8" y="32" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="26" fill="url(#brand-g2)">N</text>
+  <!-- Wordmark -->
+  <text x="46" y="28" font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="18" fill="url(#brand-g2)">NexaLab</text>
+</svg>

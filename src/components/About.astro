@@ -1,0 +1,85 @@
+---
+interface Props {
+  t: {
+    about: {
+      h2: string;
+      name: string;
+      role: string;
+      bio: string;
+    };
+  };
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const isEn = locale === 'en';
+---
+
+<section
+  id={isEn ? 'about' : 'sobre'}
+  style="background: var(--color-bg-base); padding: clamp(4rem,8vw,7rem) 0;"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8">
+    <h2
+      class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-12 text-center"
+      style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+    >
+      {t.about.h2}
+    </h2>
+
+    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 max-w-3xl mx-auto">
+      <!-- Photo placeholder (agnimated gradient avatar when photo not available) -->
+      <div class="shrink-0">
+        <div
+          class="reveal w-40 h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden border border-[var(--color-border-default)] flex items-center justify-center relative"
+          style="background: linear-gradient(135deg, #0F1530 0%, #1A2046 100%);"
+        >
+          <!-- Gradient avatar placeholder -->
+          <div
+            class="w-full h-full flex items-center justify-center text-5xl font-bold gradient-text"
+            style="font-size: 4rem;"
+            aria-hidden="true"
+          >
+            A
+          </div>
+          <!-- Subtle glow -->
+          <div
+            class="absolute inset-0 opacity-20"
+            style="background: var(--color-brand-gradient);"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="reveal reveal-delay-1 space-y-3 text-center md:text-left">
+        <div>
+          <h3 class="text-2xl font-semibold text-[var(--color-text-primary)]">{t.about.name}</h3>
+          <p class="text-sm font-medium gradient-text mt-1">{t.about.role}</p>
+        </div>
+        <p class="text-[var(--color-text-secondary)] leading-relaxed text-[1.0625rem]">
+          {t.about.bio}
+        </p>
+
+        <!-- Social links -->
+        <div class="flex items-center gap-4 pt-2 justify-center md:justify-start">
+          <a
+            href="https://instagram.com/nexalab.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-[var(--color-brand-cyan)] hover:underline font-medium"
+          >
+            @nexalab.dev
+          </a>
+          <a
+            href="https://wa.me/5527998623455"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-[var(--color-brand-cyan)] hover:underline font-medium"
+          >
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,188 @@
+export const en = {
+  meta: {
+    title: "NexaLab — AI automation for businesses to grow 24/7",
+    description: "WhatsApp AI agents, custom systems and n8n automations. NexaLab builds solutions that reply, schedule and sell for you.",
+    ogAlt: "NexaLab — Digital solutions with AI",
+  },
+  nav: {
+    services: "Services",
+    cases: "Cases",
+    pricing: "Pricing",
+    about: "About",
+    contact: "Contact",
+    cta: "Get in touch",
+  },
+  hero: {
+    eyebrow: "AI AUTOMATION · WHATSAPP · SYSTEMS",
+    h1: "Stop losing customers after hours.",
+    sub: "NexaLab builds AI agents, systems and WhatsApp automations that reply, schedule and sell for you — 24 hours a day, without hiring anyone else.",
+    ctaPrimary: "Automate my business",
+    ctaSecondary: "See real cases",
+  },
+  proof: {
+    items: ["n8n", "Meta WhatsApp Official API", "Claude", "base44", "5+ projects delivered"],
+  },
+  problem: {
+    h2: "What's slowing your operation down?",
+    items: [
+      {
+        title: "Your team wastes hours on WhatsApp",
+        body: "Answering the same questions every day: hours, pricing, location, payment options.",
+      },
+      {
+        title: "Customers who message at night go to your competitor",
+        body: "Without a reply in minutes, they open another conversation.",
+      },
+      {
+        title: "Repetitive tasks eat your whole day",
+        body: "Scheduling, registration, follow-ups, reports. All manual, all slow.",
+      },
+    ],
+  },
+  solution: {
+    h2: "How NexaLab solves it",
+    items: [
+      {
+        title: "AI agent trained with YOUR business data",
+        body: "Answers like your receptionist would — but in seconds and without getting tired.",
+      },
+      {
+        title: "24/7 service that captures leads while you sleep",
+        body: "Saturday, Sunday, holidays, 3am. Nobody on call.",
+      },
+      {
+        title: "End-to-end automation",
+        body: "WhatsApp + calendar + spreadsheet + CRM talking to each other. Without you in the middle.",
+      },
+    ],
+  },
+  services: {
+    h2: "What NexaLab delivers",
+    cards: [
+      {
+        featured: true,
+        badge: "READY-MADE PRODUCT",
+        title: "WhatsApp AI Agent",
+        body: "Replies, schedules and qualifies your customers automatically. Trained with your business data.",
+        bullets: [
+          "Meta Official API + n8n + Claude",
+          "Setup in 7 to 14 days",
+          "Use cases: clinics, salons, offices, retail",
+        ],
+        price: "From R$ 800 setup + R$ 150/month",
+      },
+      {
+        featured: false,
+        badge: "",
+        title: "Custom management systems",
+        body: "Scheduling, finance, inventory, commissions — all in one tool, built the way YOU work.",
+        bullets: [
+          "Built with base44 + custom integrations",
+          "Real case: Studio Ellev (full salon system)",
+        ],
+        price: "From R$ 1,500",
+      },
+      {
+        featured: false,
+        badge: "",
+        title: "n8n automations",
+        body: "Connects WhatsApp, Google Calendar, spreadsheets, CRM and AI in a single flow. For any repetitive process in your company.",
+        bullets: [
+          "Custom workflows",
+          "Use cases: prospecting, follow-up, automated reports",
+        ],
+        price: "From R$ 500 per workflow",
+      },
+    ],
+  },
+  cases: {
+    h2: "Delivered work",
+    cards: [
+      {
+        featured: true,
+        badge: "READY-MADE PRODUCT",
+        title: "AI Agent — Dental Clinic",
+        body: "Automatic WhatsApp service, scheduling and 24h confirmation.",
+        stack: "n8n + Meta WhatsApp API + Claude",
+        quote: "Available for clinics across Brazil",
+        ctaLabel: "I want it for my clinic",
+        ctaTarget: "#contact",
+        url: "",
+      },
+      {
+        featured: false,
+        badge: "",
+        title: "Studio Ellev",
+        body: "Complete system for beauty salon: scheduling, finance, inventory, commissions, WhatsApp reminders.",
+        stack: "base44",
+        quote: "",
+        ctaLabel: "",
+        ctaTarget: "",
+        url: "https://glowbymayza.base44.app",
+      },
+      {
+        featured: false,
+        badge: "",
+        title: "Marina Dental Office",
+        body: "Dental capture landing page with WhatsApp integration.",
+        stack: "base44",
+        quote: "",
+        ctaLabel: "",
+        ctaTarget: "",
+        url: "https://marinaodonto.base44.app",
+      },
+      {
+        featured: false,
+        badge: "",
+        title: "Quintalzinho Beach",
+        body: "Institutional website for a beach venue.",
+        stack: "base44",
+        quote: "",
+        ctaLabel: "",
+        ctaTarget: "",
+        url: "https://quintalzinhobeach.base44.app",
+      },
+    ],
+    externalCta: "View project",
+  },
+  pricing: {
+    h2: "Investment",
+    headers: ["Service", "Setup", "Maintenance"],
+    rows: [
+      ["WhatsApp Agent", "R$ 800 – 1,200", "R$ 150 – 200/month"],
+      ["Custom system", "from R$ 1,500", "by quote"],
+      ["n8n automation", "from R$ 500/workflow", "optional"],
+    ],
+    note: "No lock-in. No hidden setup fees. You pay once for implementation and get 1 month of support included.",
+    cta: "Get a quote",
+  },
+  about: {
+    h2: "Who's behind it",
+    name: "Agnes Mauricio",
+    role: "Founder & Developer",
+    bio: "I build digital solutions with AI for businesses to grow without complications. Based in Vila Velha, Brazil, with 5+ projects delivered in recent months — my focus is delivering results, not selling technology.",
+  },
+  contact: {
+    h2: "Let's automate what's holding you back?",
+    sub: "Tell me a bit about your business. I'll reply within 24h on WhatsApp.",
+    fields: {
+      name: "Name",
+      whatsapp: "WhatsApp",
+      business: "Business type",
+      businessOptions: ["Clinic", "Salon/Studio", "Restaurant/Bar", "Store/Retail", "Services", "Other"],
+      message: "What do you want to automate? (optional)",
+      submit: "Send to NexaLab",
+    },
+    trust: "No spam. Your message goes straight to the founder's WhatsApp.",
+  },
+  footer: {
+    tagline: "Digital solutions with AI",
+    location: "Vila Velha, Brazil",
+    contactLabel: "Contact",
+    whatsapp: "(27) 99862-3455",
+    instagram: "@nexalab.dev",
+    instagramUrl: "https://instagram.com/nexalab.dev",
+    whatsappUrl: "https://wa.me/5527998623455",
+    rights: "© 2026 NexaLab. All rights reserved.",
+  },
+} as const;

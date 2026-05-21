@@ -1,0 +1,30 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit';
+  variant?: 'primary' | 'secondary';
+  class?: string;
+}
+const { href, type = 'button', variant = 'primary', class: className = '' } = Astro.props;
+const isPrimary = variant === 'primary';
+const baseClass = `inline-flex items-center gap-2 font-medium rounded-[0.625rem] px-6 py-3.5 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-cyan)]`;
+const primaryClass = `text-white hover:brightness-110 hover:shadow-[0_0_24px_var(--color-glow-cyan)]`;
+const secondaryClass = `text-[var(--color-text-primary)] border border-[var(--color-border-default)] hover:border-[var(--color-border-strong)] hover:bg-white/5`;
+---
+{href ? (
+  <a
+    href={href}
+    class:list={[baseClass, isPrimary ? primaryClass : secondaryClass, className]}
+    style={isPrimary ? 'background: var(--color-brand-gradient);' : ''}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={[baseClass, isPrimary ? primaryClass : secondaryClass, className]}
+    style={isPrimary ? 'background: var(--color-brand-gradient);' : ''}
+  >
+    <slot />
+  </button>
+)}

@@ -1,0 +1,12 @@
+---
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+<span
+  class="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full gradient-text border"
+  style="border-image: linear-gradient(135deg,#4FC3F7,#A855F7) 1; border-width: 1px; border-style: solid; border-image-slice: 1;"
+>
+  {text}
+</span>

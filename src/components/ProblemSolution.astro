@@ -1,0 +1,72 @@
+---
+import Card from './ui/Card.astro';
+
+interface Item {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  t: {
+    problem: { h2: string; items: readonly Item[] };
+    solution: { h2: string; items: readonly Item[] };
+  };
+  locale: string;
+}
+
+const { t } = Astro.props;
+---
+
+<section
+  id="problema"
+  style="background: var(--color-bg-base); padding: clamp(4rem,8vw,7rem) 0;"
+>
+  <div class="mx-auto max-w-[1200px] px-6 lg:px-8 space-y-20">
+
+    <!-- Problem -->
+    <div>
+      <h2
+        class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-10 text-center"
+        style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+      >
+        {t.problem.h2}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        {t.problem.items.map((item, i) => (
+          <Card class={`reveal reveal-delay-${i + 1}`}>
+            <div class="w-8 h-8 rounded-full mb-4 flex items-center justify-center" style="background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-2">{item.title}</h3>
+            <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">{item.body}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+
+    <!-- Solution -->
+    <div>
+      <h2
+        class="reveal font-semibold tracking-tight text-[var(--color-text-primary)] mb-10 text-center"
+        style="font-size: clamp(1.875rem,3vw,2.75rem); letter-spacing: -0.02em;"
+      >
+        {t.solution.h2}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        {t.solution.items.map((item, i) => (
+          <Card class={`reveal reveal-delay-${i + 1}`}>
+            <div class="w-8 h-8 rounded-full mb-4 flex items-center justify-center" style="background: rgba(79,195,247,0.12); border: 1px solid rgba(79,195,247,0.25);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4FC3F7" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-2">{item.title}</h3>
+            <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed">{item.body}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
